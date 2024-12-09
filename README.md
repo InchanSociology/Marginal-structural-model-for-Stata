@@ -6,7 +6,6 @@ The empirical analysis is conducted using Stata 17. Replication material provide
 
 1. Download of Korean Children and Youth Panel Survey 2010 (KCYPS 2010) 7th grade Cohort data via the NYPI
 2. Stata Do-files for a) extracting and preparing b) LCA model selection and c) analyzing the data
-3. Stata Do-file for Figure 1 of the article (Hypotheses)
 
 Please get in touch via email if you have any questions.
 

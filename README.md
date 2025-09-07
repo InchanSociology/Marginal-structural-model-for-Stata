@@ -73,7 +73,8 @@ This script performs latent class analysis (LCA) to identify distinct poverty tr
   
 - Conducts subgroup analysis for males (`male == 1`) and females (`male == 0`).
 
-## 📐 Marginal Structural Model (MSM)
+
+## 📐 Methodology Overview - Marginal Structural Model (MSM)
 
 To estimate the causal effect of poverty trajectories on 4-year college entrance while accounting for time-varying confounders, we use a Marginal Structural Model (MSM) with stabilized weights.
 

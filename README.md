@@ -74,7 +74,52 @@ This script performs latent class analysis (LCA) to identify distinct poverty tr
 - Conducts subgroup analysis for males (`male == 1`) and females (`male == 0`).
 
 
-## 📐 Methodology Overview - Marginal Structural Model (MSM)
+## Methodology Overview
+
+## Latent Class Analysis (LCA)
+
+To identify distinct poverty trajectory groups over six waves, we use Latent Class Analysis (LCA), a type of finite mixture model. Each individual is assigned to a latent class based on their observed poverty status across time.
+
+### 1. Joint Probability of Class Membership
+
+$$
+Pr(P_1, P_2, \dots, P_K) = \sum_{j=1}^{J} Pr(L = j) \cdot \prod_{k=1}^{K} Pr(P_k \mid L = j)
+$$
+
+- \( P_k \): Poverty status at time \( k \)  
+- \( L \): Latent class variable  
+- \( J \): Number of latent classes  
+- \( K \): Number of time points (waves)
+
+This formulation assumes conditional independence of observed indicators given latent class membership.
+
+---
+
+### 2. Estimation via Maximum Likelihood
+
+LCA estimates parameters using the Expectation-Maximization (EM) algorithm to maximize the likelihood:
+
+$$
+\mathcal{L} = \prod_{i=1}^{N} \sum_{j=1}^{J} Pr(L_i = j) \cdot \prod_{k=1}^{K} Pr(P_{ik} \mid L_i = j)
+$$
+
+- \( N \): Number of individuals  
+- \( P_{ik} \): Poverty status of individual \( i \) at time \( k \)
+
+---
+
+### 3. Model Selection Criteria
+
+To determine the optimal number of classes \( J \), we evaluate:
+
+- Akaike Information Criterion (AIC)  
+- Bayesian Information Criterion (BIC)  
+- Sample-size Adjusted BIC (ABIC)  
+- Entropy
+
+Lower AIC/BIC/ABIC and higher entropy indicate better model fit.
+
+## Marginal Structural Model (MSM)
 
 To estimate the causal effect of poverty trajectories on 4-year college entrance while accounting for time-varying confounders, we use a Marginal Structural Model (MSM) with stabilized weights.
 
@@ -122,3 +167,13 @@ $$
 - \( PT_i \): Assigned poverty trajectory  
 - \( TC_i \): Time-constant covariates  
 - \( \varepsilon_i \): Error term
+
+
+
+
+
+
+
+
+
+

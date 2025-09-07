@@ -1,6 +1,6 @@
 # Replication materials for Poverty Trajectories and College Entracne
 
-This repository contains replication materials for Inchan Hwang and Dohoon Lee. 2023. "Poverty Trajectories during Adolescence and 4-Year College Entrance." Korea Journal of Population Studies doi.org/10.31693/KJPS.2023.03.46.1.1
+This repository contains replication materials for Inchan Hwang and Dohoon Lee. 2023. "Poverty Trajectories during Adolescence and 4-Year College Entrance." Korea Journal of Population Studies https://doi.org/10.31693/KJPS.2023.03.46.1.1
 
 The empirical analysis is conducted using Stata 17. Replication material provided in this package:
 

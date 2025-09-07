@@ -72,3 +72,52 @@ This script performs latent class analysis (LCA) to identify distinct poverty tr
     - **Family structure** (`fam_str_wave1`), **parental health** (`par3_wave1`), **job types** (`job_wave1`), and **sibling count** (`sib_wave1`).
   
 - Conducts subgroup analysis for males (`male == 1`) and females (`male == 0`).
+
+## 📐 Marginal Structural Model (MSM)
+
+To estimate the causal effect of poverty trajectories on 4-year college entrance while accounting for time-varying confounders, we use a Marginal Structural Model (MSM) with stabilized weights.
+
+### 1. Stabilized Inverse Probability Treatment Weight (IPTW)
+
+$$
+sw_i = \prod_{t=1}^{T} \frac{Pr(P_t \mid P_{t-1}, TC)}{Pr(P_t \mid P_{t-1}, TC, TV_t)}
+$$
+
+- \( sw_i \): Stabilized weight for individual \( i \)  
+- \( P_t \): Poverty status at time \( t \)  
+- \( TC \): Time-constant covariates  
+- \( TV_t \): Time-varying covariates at time \( t \)
+
+---
+
+### 2. Stabilized Censoring Weight
+
+$$
+cw_i = \prod_{t=1}^{T} \frac{Pr(C_t = 0 \mid C_{t-1}, P_{t-1}, TC)}{Pr(C_t = 0 \mid C_{t-1}, P_{t-1}, TC, TV_t)}
+$$
+
+- \( cw_i \): Stabilized censoring weight for individual \( i \)  
+- \( C_t = 0 \): Not censored at time \( t \)
+
+---
+
+### 3. Final Weight
+
+$$
+fw_i = sw_i \times cw_i
+$$
+
+This final weight is used in the MSM estimation model.
+
+---
+
+### 4. MSM Estimation Model
+
+$$
+\text{logit}(Pr(Y_i = 1)) = \beta_0 + \beta_1 \cdot PT_i + \beta_2 \cdot TC_i + \varepsilon_i
+$$
+
+- \( Y_i \): 4-year college entrance (1 = yes, 0 = no)  
+- \( PT_i \): Assigned poverty trajectory  
+- \( TC_i \): Time-constant covariates  
+- \( \varepsilon_i \): Error term
